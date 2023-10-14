@@ -50,7 +50,6 @@ class HBNBCommand(cmd.Cmd):
 
     def do_create(self, arg):
         """Create a new instance of models classes"""
-
         cls_name = arg.split(" ")[0]
 
         if not cls_name:
@@ -67,7 +66,6 @@ class HBNBCommand(cmd.Cmd):
 
     def do_show(self, arg):
         """Print the string representation of an istance"""
-
         arg_list = arg.split(" ")
         cls_name = arg_list[0]
         if not cls_name:
@@ -78,9 +76,8 @@ class HBNBCommand(cmd.Cmd):
             print("** class doesn't exist **")
             return
 
-        try:
-            cls_id = arg_list[1]
-        except IndexError:
+        cls_id = arg_list[1]
+        if not cls_id:
             print("** instance id missing **")
             return
 
@@ -95,7 +92,6 @@ class HBNBCommand(cmd.Cmd):
 
     def do_destroy(self, arg):
         """ Deletes an instance based on the class name and id """
-
         my_dict = {}
         arg_list = arg.split(" ")
         cls_name = arg_list[0]
@@ -107,9 +103,8 @@ class HBNBCommand(cmd.Cmd):
             print("** class doesn't exist **")
             return
 
-        try:
-            cls_id = arg_list[1]
-        except IndexError:
+        cls_id = arg_list[1]
+        if not cls_id:
             print("** instance id missing **")
             return
 
@@ -162,35 +157,21 @@ class HBNBCommand(cmd.Cmd):
             print("** class doesn't exist **")
             return
 
-        try:
-            cls_id = arg_list[1]
-        except IndexError:
+        cls_id = arg_list[1]
+        if not cls_id:
             print("** instance id missing **")
             return
 
-        try:
-            attr_name = arg_list[2]
-        except IndexError:
+        attr_name = arg_list[2]
+        if not attr_name:
             print("** attribute name missing **")
             return
 
-        if len(arg_list) < 4:
+        val = arg_list[3]
+        
+        if not val:
             print("** value missing **")
             return
-
-        val = arg_list[3]
-        if val.startswith("\""):
-            i = 4
-            val = val.replace("\"", "")
-            while True:
-                try:
-                    endwith = arg_list[i][-1]
-                    val = val + " " + arg_list[i].replace("\"", "")
-                    if endwith == "\"":
-                        break
-                except IndexError:
-                    break
-                i += 1
 
         my_dict = storage.all()
 

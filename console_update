@@ -1,0 +1,15 @@
+val = arg_list[3]
+        if val.startswith("\""):
+            startwith = "\""
+            endwith = "\""
+            i = 4
+            val = val.replace("\"", "")
+            while endwith == "\"" and startwith == "\"":                                           try:
+                    endwith = arg_list[i][-1]
+                    print(arg_list[i])
+                    print(arg_list[5])
+                    val = val + " " + arg_list[i].replace("\"", "")
+                    print(val)
+                except IndexError:
+                    break
+                i += 1
