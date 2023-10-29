@@ -199,7 +199,7 @@ class HBNBCommand(cmd.Cmd):
         if key in my_dict:
             obj = my_dict[key]
             setattr(obj, attr_name, val)
-            storage.save()
+            obj.save()
         else:
             print("** no instance found **")
 

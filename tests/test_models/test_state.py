@@ -28,9 +28,14 @@ class TestStateInstantiation(unittest.TestCase):
         self.assertTrue(hasattr(a, "updated_at"))
         self.assertTrue(hasattr(a, "created_at"))
 
-    def test_with_settr(self):
+    def test_with_no_args(self):
         a = State()
-        self.assertTrue(hasattr(a, "name"))
+        self.assertEqual(type(a.name), str)
+
+    def test_attr_with_settr(self):
+        c = State()
+        c.name = "Lagos"
+        self.assertEqual(c.name, "Lagos")
 
 
 if __name__ == "__main__":

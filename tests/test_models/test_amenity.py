@@ -23,6 +23,7 @@ class TestAmenityInstantiation(unittest.TestCase):
     def test_no_args(self):
         a = Amenity()
         self.assertIsInstance(a, Amenity)
+        self.assertIsInstance(a, BaseModel)
         self.assertTrue(issubclass(type(a), BaseModel))
         self.assertTrue(hasattr(a, "id"))
         self.assertTrue(hasattr(a, "updated_at"))
@@ -33,6 +34,10 @@ class TestAmenityInstantiation(unittest.TestCase):
         a.name = "pool"
         self.assertTrue(hasattr(a, "name"))
         self.assertEqual(a.name, "pool")
+
+    def test_attr_with_default(self):
+        a = Amenity()
+        self.assertEqual(a.name, "")
 
 
 if __name__ == "__main__":

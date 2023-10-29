@@ -28,11 +28,16 @@ class TestReviewInstantiation(unittest.TestCase):
         self.assertTrue(hasattr(a, "updated_at"))
         self.assertTrue(hasattr(a, "created_at"))
 
-    def test_with_settr(self):
+    def test_with_no_args(self):
         a = Review()
-        self.assertTrue(hasattr(a, "place_id"))
-        self.assertTrue(hasattr(a, "user_id"))
-        self.assertTrue(hasattr(a, "text"))
+        self.assertEqual(type(a.user_id), str)
+        self.assertEqual(type(a.place_id), str)
+        self.assertEqual(type(a.text), str)
+
+    def test_attr_with_settr(self):
+        c = Review()
+        c.text = "Good"
+        self.assertEqual(c.text, "Good")
 
 
 if __name__ == "__main__":

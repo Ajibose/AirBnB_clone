@@ -27,6 +27,13 @@ class TestUserInstantiation(unittest.TestCase):
         self.assertIsInstance(u.created_at, datetime.datetime)
         self.assertIsInstance(u.updated_at, datetime.datetime)
 
+    def test_user_attr_with_default(self):
+        user = User()
+        self.assertEqual(user.email, "")
+        self.assertEqual(user.password, "")
+        self.assertEqual(user.first_name, "")
+        self.assertEqual(user.last_name, "")
+
     def test_set_attr(self):
         """Test for setting attr"""
         u = User()
@@ -79,6 +86,7 @@ class TestUserInstantiation(unittest.TestCase):
         self.assertTrue(hasattr(User, "password"))
         self.assertTrue(hasattr(User, "first_name"))
         self.assertTrue(hasattr(User, "last_name"))
+
 
 if __name__ == "__main__":
     unittest.main()

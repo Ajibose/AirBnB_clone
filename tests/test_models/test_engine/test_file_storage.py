@@ -30,10 +30,6 @@ class TestFileStorage(unittest.TestCase):
         self.assertEqual(type(s), FileStorage)
         self.assertIsInstance(s, FileStorage)
 
-    def test_instantiation_with_args(self):
-        with self.assertRaises(TypeError):
-            FileStorage(None)
-
     def test_storage_private_attr_dict(self):
         s = FileStorage()
         self.assertTrue(type(s.__class__._FileStorage__objects), dict)
@@ -112,6 +108,10 @@ class TestFileStorage(unittest.TestCase):
         self.assertIn(f"State.{s.id}", json_dict.keys())
         self.assertIn(f"User.{u.id}", json_dict.keys())
 
+    def test_save_with_args(self):
+        with self.assertRaises(TypeError):
+            storage.save(None)
+
     def test_reload(self):
         dic = storage.all()
         self.assertFalse(dic)
@@ -134,6 +134,9 @@ class TestFileStorage(unittest.TestCase):
         self.assertIn(f"State.{s.id}", dic.keys())
         self.assertIn(f"User.{u.id}", dic.keys())
 
+        FileStorage._FileStorage__file_path = "text.json"
+        storage.reload()
 
-if __name__ =="__main__":
+
+if __name__ == "__main__":
     unittest.main()
